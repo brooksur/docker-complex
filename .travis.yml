@@ -22,6 +22,7 @@ after_success:
   - docker push brooksbenson03/multi-worker
 
 deploy:
+  provider: elasticbeanstalk
   region: us-west-1
   app: multi-docker
   env: Multi-docker-env
