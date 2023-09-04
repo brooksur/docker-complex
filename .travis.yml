@@ -1,5 +1,6 @@
 language: generic
 sudo: required
+
 services:
   - docker
 
@@ -19,3 +20,15 @@ after_success:
   - docker push brooksbenson03/multi-nginx
   - docker push brooksbenson03/multi-server
   - docker push brooksbenson03/multi-worker
+
+deploy:
+  region: us-west-1
+  app: multi-docker
+  env: Multi-docker-env
+  bucket_name: elasticbeanstalk-us-west-1-374408092827
+  bucket_path: docker-multi
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+  on:
+    branch: main
